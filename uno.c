@@ -177,7 +177,7 @@ void compraCarta (jogador *j, stack *baralho, stack *mesa, carta cartaMesa) {
         push (&j->mao, c);
         printf("%s comprou\n", j->nome);
     } else {
-        printf("Baralho vazio! Reciclando o descarte...\n");
+        printf("baralho vazio reciclando\n");
 		for (int i = 0; i <= mesa->topo; i++) { 
 		push(baralho, mesa->cartas[i]); 
 		}
@@ -190,7 +190,7 @@ void compraCarta (jogador *j, stack *baralho, stack *mesa, carta cartaMesa) {
             push (&j->mao, c);
             printf("%s comprou\n", j->nome);
         } else {
-            printf("Nao ha cartas para reciclar. %s nao comprou.\n", j->nome);
+            printf("nao ha cartas para reciclar. %s nao comprou.\n", j->nome);
         }
     }
 }
@@ -208,9 +208,9 @@ void jogarCarta (jogador *j, stack *mesa, carta jogada, int index) { //precisa d
 }
 
 int jogadaValida (carta mesa, carta jogada) {
-	if (jogada.tipo == curinga) return 1;  // Curingas sempre válidos
-	if (jogada.cor == mesa.cor) return 1;  // Mesma cor
-	if (jogada.tipo == normal && mesa.tipo == normal && jogada.valor == mesa.valor) return 1;  // Mesmo valor (para normais)
+	if (jogada.tipo == curinga) return 1;  // curingas sempre validos
+	if (jogada.cor == mesa.cor) return 1;  // mesma cor
+	if (jogada.tipo == normal && mesa.tipo == normal && jogada.valor == mesa.valor) return 1;  //normais tem mesmo valor
 	return 0;
 }
 
@@ -235,7 +235,7 @@ int main() {
 	distribuir(&baralho, jogadores, indexJogadores);
 	
 	int atualJogador = 0;
-	int direcao = 1; // fazer assim e usar -1 pra inversao depois (n esquecer de fazer)
+	int direcao = 1; // fazer assim e usar -1 pra inversao
 	
  	carta cartaMesa;
  	
@@ -244,7 +244,7 @@ int main() {
  		if (cartaMesa.tipo != normal) {
  			push (&baralho, cartaMesa);
  			embaralhar (&baralho);
- 			printf("carta especial retirada re-embaralhando...\n");
+ 			printf("carta especial retirada embaralhando\n");
 		 }
 	 } while (cartaMesa.tipo != normal);
 	 printf("carta inicial: cor %s, valor %d\n", nomeCor(cartaMesa.cor), cartaMesa.valor);
